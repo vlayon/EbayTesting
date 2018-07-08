@@ -1,12 +1,13 @@
 package com.vlayon.pages;
 
+import com.vlayon.utilities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
     //implementing POM with PageFactory
    private WebDriver driver;
     private String logInPageUrl = "https://signin.ebay.co.uk/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fwww.ebay.co.uk%2F";
@@ -21,7 +22,7 @@ public class LoginPage {
     private WebElement logInButton;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
 
     }
@@ -37,6 +38,6 @@ public class LoginPage {
     }
 
     public void clickLogInButton(){
-        logInButton.click();
+        clickOn(logInButton);
     }
 }
