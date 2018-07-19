@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
     //implementing POM with PageFactory
-   private WebDriver driver;
+  // private WebDriver driver;
     private String logInPageUrl = "https://signin.ebay.co.uk/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fwww.ebay.co.uk%2F";
 
     @FindBy(id = "userid")
@@ -23,10 +23,13 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        //super.driver=driver;
         PageFactory.initElements(driver, this);
 
     }
-
+    public void goToLoginPage(){
+        super.getDriver().get(logInPageUrl);
+    }
 
     public void setUserName(String userName){
         userNameField.sendKeys(userName);

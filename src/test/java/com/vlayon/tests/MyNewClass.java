@@ -14,21 +14,27 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class MyNewClass {
-private static WebDriver driver;
+private WebDriver driver;
+private final String driverPath= "D:\\Setup\\CromeDriver\\chromedriver.exe";
+
+    @BeforeSuite
+    public void BeforeSuite(){
+        System.setProperty("webdriver.chrome.driver", driverPath);
+    }
 
     @BeforeTest
     public void BeforeTest() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Setup\\CromeDriver\\chromedriver.exe");
+
         driver= new ChromeDriver();
         driver.manage().deleteAllCookies();
-        //driver.get("https://www.ebay.co.uk/");
+        driver.get("https://www.ebay.co.uk/");
         driver.manage().window().maximize();
     }
 
     @Test
     public void LoginTest() {
-        driver.get("https://signin.ebay.co.uk/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fwww.ebay.co.uk%2F");
         LoginPage logInPage= new LoginPage(driver);
+        logInPage.goToLoginPage();
         logInPage.setUserName("lookironic@gmail.com");
         logInPage.setPassword("AutomationT3sts");
         logInPage.clickLogInButton();
@@ -39,14 +45,14 @@ private static WebDriver driver;
 
     }
 
-    @Test
-    public void SearchTest(){
-        HomePage homePage= new HomePage(driver);
-        homePage.writeInSearcField("bike mudguard");
-        homePage.clickOverGoButton();
-    }
+  //@Test
+  //public void SearchTest(){
+  //    HomePage homePage= new HomePage(driver);
+  //    homePage.writeInSearcField("bike mudguard");
+  //    homePage.clickOverGoButton();
+  //}
     @AfterTest
     public void AfterTest() {
-     // driver.quit();
+     driver.quit();
     }
 }
