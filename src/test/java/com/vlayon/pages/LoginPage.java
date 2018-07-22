@@ -5,11 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
 
 public class LoginPage extends BasePage {
     //implementing POM with PageFactory
-  // private WebDriver driver;
     private String logInPageUrl = "https://signin.ebay.co.uk/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fwww.ebay.co.uk%2F";
 
     @FindBy(id = "userid")
@@ -21,26 +20,28 @@ public class LoginPage extends BasePage {
     @FindBy(id = "sgnBt")
     private WebElement logInButton;
 
+    @FindBy(id = "gh-ug")
+    private WebElement logInGreetings;
+
+    public String getLogInGreetings() {
+        return logInGreetings.getText();
+    }
+
     public LoginPage(WebDriver driver) {
         super(driver);
-        //super.driver=driver;
-        PageFactory.initElements(driver, this);
+
 
     }
     public void goToLoginPage(){
         super.getDriver().get(logInPageUrl);
     }
 
-    public void setUserName(String userName){
+    public void logIn(String userName, String password){
         userNameField.sendKeys(userName);
-
-    }
-
-    public void setPassword(String password){
         passwordField.sendKeys(password);
+        clickOn(logInButton);
+
     }
 
-    public void clickLogInButton(){
-        clickOn(logInButton);
-    }
+
 }

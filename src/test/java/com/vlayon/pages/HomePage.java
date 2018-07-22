@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
 
 public class HomePage extends BasePage {
 
@@ -14,7 +14,7 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver){
        super(driver);
-        PageFactory.initElements(driver, this);
+
     }
 
     @FindBy(id = "gh-ac")
@@ -23,11 +23,10 @@ public class HomePage extends BasePage {
     @FindBy(id="gh-btn")
     private WebElement goButton;
 
-    public void writeInSearcField(String text){
+    public void searchForText(String text){
         searchField.sendKeys(text);
-    }
-
-    public void clickOverGoButton(){
         clickOn(goButton);
     }
+
+
 }

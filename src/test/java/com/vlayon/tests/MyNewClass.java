@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class MyNewClass {
 private WebDriver driver;
-private final String driverPath= "D:\\Setup\\CromeDriver\\chromedriver.exe";
+private String driverPath= "D:\\Setup\\CromeDriver\\chromedriver.exe";
 
     @BeforeSuite
     public void BeforeSuite(){
@@ -35,22 +35,18 @@ private final String driverPath= "D:\\Setup\\CromeDriver\\chromedriver.exe";
     public void LoginTest() {
         LoginPage logInPage= new LoginPage(driver);
         logInPage.goToLoginPage();
-        logInPage.setUserName("lookironic@gmail.com");
-        logInPage.setPassword("AutomationT3sts");
-        logInPage.clickLogInButton();
-        WebElement logInGreetings= driver.findElement(By.id("gh-ug"));
-        String result= logInGreetings.getText();
-        Assert.assertEquals(result,  "Hello Automation.","You are not logged");
+        logInPage.logIn("lookironic@gmail.com","AutomationT3sts");
+        Assert.assertEquals(logInPage.getLogInGreetings(),  "Hello Automation.","You are not logged");
 
 
     }
 
-  //@Test
-  //public void SearchTest(){
-  //    HomePage homePage= new HomePage(driver);
-  //    homePage.writeInSearcField("bike mudguard");
-  //    homePage.clickOverGoButton();
-  //}
+    @Test
+    public void SearchTest(){
+        HomePage homePage= new HomePage(driver);
+        homePage.searchForText("bike mudguard");
+
+    }
     @AfterTest
     public void AfterTest() {
      driver.quit();
