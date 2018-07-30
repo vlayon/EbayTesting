@@ -12,17 +12,19 @@ import java.util.List;
 
 public  abstract class BasePage {
 
-    private WebDriver driver= new ChromeDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 20);
+    private WebDriver driver;
+    private WebDriverWait wait ;
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 20);
     }
 
-protected WebDriver getDriver(){
-        return this.driver;
-}
+    protected WebDriver getDriver(){
+            return this.driver;
+    }
 
        protected void clickOn(WebElement element) {
         try {

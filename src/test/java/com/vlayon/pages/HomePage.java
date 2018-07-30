@@ -5,15 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 
 public class HomePage extends BasePage {
 
-    private WebDriver driver;
-    private String homePageUrl="https://www.ebay.co.uk/";
+   // private WebDriver driver;
+    private static String homePageUrl="https://www.ebay.co.uk/";
 
     public HomePage(WebDriver driver){
        super(driver);
+       PageFactory.initElements(driver,this);
 
     }
 
@@ -28,5 +31,9 @@ public class HomePage extends BasePage {
         clickOn(goButton);
     }
 
-
+    public void sendTextToElement(WebElement element, String text){
+        element.clear();
+        element.sendKeys(text);
+        Assert.assertEquals(element.getAttribute("value"), text);
+    }
 }
