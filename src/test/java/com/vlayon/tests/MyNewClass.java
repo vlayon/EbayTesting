@@ -42,14 +42,16 @@ private LoginPage logInPage;
 
     }
 
-   // @Test
-   // public void SearchTest(){
-   //     HomePage homePage= new HomePage(driver);
-   //     homePage.searchForText("bike mudguard");
-//
-   // }
-   //@AfterTest
-   //public void AfterTest() {
-   // driver.quit();
-   //}
+   @Test
+   public void SearchTest(){
+       HomePage homePage= new HomePage(driver);
+       homePage.goToHomePage();
+       Assert.assertEquals(driver.getTitle(), "Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay", "Page not loaded");
+       homePage.searchForText("bike mudguard");
+
+   }
+   @AfterTest
+   public void AfterTest() {
+    driver.quit();
+   }
 }

@@ -31,9 +31,9 @@ public class HomePage extends BasePage {
         clickOn(goButton);
     }
 
-    public void sendTextToElement(WebElement element, String text){
-        element.clear();
-        element.sendKeys(text);
-        Assert.assertEquals(element.getAttribute("value"), text);
+    public void goToHomePage () {
+        getDriver().get(homePageUrl);
+
     }
+
 }

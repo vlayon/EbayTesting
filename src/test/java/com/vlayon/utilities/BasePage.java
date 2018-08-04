@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public  abstract class BasePage {
             System.out.println("Element \"" + element + "is not visible");
         }
 
+    }
+
+    public void sendTextToElement(WebElement element, String text){
+        element.clear();
+        element.sendKeys(text);
+        Assert.assertEquals(element.getAttribute("value"), text);
     }
 }
 
