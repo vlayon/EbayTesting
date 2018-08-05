@@ -7,11 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.logging.Logger;
+
 
 public class LoginPage extends BasePage {
     //implementing POM with PageFactory
     private static String logInPageUrl = "https://signin.ebay.co.uk/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fwww.ebay.co.uk%2F";
-
+    private final static Logger myLogger = Logger.getLogger(LoginPage.class.getName());
     @FindBy(id = "userid")
     private WebElement userNameField;
 
@@ -31,11 +33,12 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-
+        myLogger.info("LoginPage created");
 
     }
     public void goToLoginPage(){
         super.getDriver().get(logInPageUrl);
+        myLogger.info("LoginPage");
 
     }
 
@@ -43,6 +46,7 @@ public class LoginPage extends BasePage {
         userNameField.sendKeys(userName);
         passwordField.sendKeys(password);
         clickOn(logInButton);
+        myLogger.info("logIn started");
 
     }
 

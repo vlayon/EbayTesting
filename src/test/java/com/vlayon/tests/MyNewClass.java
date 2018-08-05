@@ -2,6 +2,7 @@ package com.vlayon.tests;
 
 import com.vlayon.pages.HomePage;
 import com.vlayon.pages.LoginPage;
+import com.vlayon.utilities.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,15 +14,24 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
 public class MyNewClass {
 private  WebDriver driver;
 private String chromeDriverPath= "D:\\Setup\\CromeDriver\\chromedriver.exe";
 private LoginPage logInPage;
+private final static Logger myLogger = Logger.getLogger(MyNewClass.class.getName());
 
-   // @BeforeSuite
-   // public void BeforeSuite(){
-    //    System.setProperty("webdriver.chrome.driver", driverPath);
-    //}
+   @BeforeSuite
+   public void BeforeSuite(){
+       try {
+           MyLogger.setup();
+           myLogger.info("Logger setUp finished");
+       } catch (IOException e) {
+           e.printStackTrace();
+           throw new RuntimeException("Problems with creating the log files");
+       } }
 
    @BeforeTest
    public void BeforeTest() {
@@ -30,6 +40,7 @@ private LoginPage logInPage;
        driver.manage().deleteAllCookies();
        driver.get("https://www.ebay.co.uk/");
        driver.manage().window().maximize();
+
    }
 
     @Test
