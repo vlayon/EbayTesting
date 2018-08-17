@@ -18,7 +18,7 @@ import static com.sun.media.jfxmedia.logging.Logger.*;
 public  abstract class BasePage {
 
     private WebDriver driver;
-    private WebDriverWait wait ;
+    protected WebDriverWait wait ;
     private final static Logger myLogger = Logger.getLogger(BasePage.class.getName());
 
 
@@ -37,13 +37,13 @@ public  abstract class BasePage {
         try {
             element = wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            myLogger.info("element is clicked");
+            myLogger.info("Method clickOn: element is clicked");
 
 
 
         } catch (ElementNotVisibleException enve) {
             System.out.println("Element \"" + element + "is not visible");
-            myLogger.severe("element was not visible");
+            myLogger.severe("Method clickOn: element was not visible");
         }
 
     }

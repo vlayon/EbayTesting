@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.logging.Logger;
 
@@ -27,6 +28,8 @@ public class LoginPage extends BasePage {
     private WebElement logInGreetings;
 
     public String getLogInGreetings() {
+        logInGreetings = wait.until(ExpectedConditions.visibilityOf(logInGreetings));
+        myLogger.info("logInGreetings are visible");
         return logInGreetings.getText();
     }
 
@@ -38,7 +41,7 @@ public class LoginPage extends BasePage {
     }
     public void goToLoginPage(){
         super.getDriver().get(logInPageUrl);
-        myLogger.info("LoginPage");
+        myLogger.info("navigated to LoginPage");
 
     }
 

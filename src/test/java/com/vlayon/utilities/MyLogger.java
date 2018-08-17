@@ -25,7 +25,7 @@ public class MyLogger {
           // }
 
             logger.setLevel(Level.INFO);
-            fileTxt = new FileHandler("Logging.txt");
+            fileTxt = new FileHandler("Logging.txt",8096,1, true);
 
 
             // create a TXT formatter
